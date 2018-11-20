@@ -63,5 +63,5 @@ let layout = {
 };
 
 function draw() {
-	Plotly.newPlot('myDiv', data, layout);
+	Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
 }

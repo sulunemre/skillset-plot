@@ -1,20 +1,80 @@
 [
   {
-    "category": "programming-language",
+    "category": "Programming Language",
     "name": "Java",
     "know-score": 85,
     "love-score": 100
   },
   {
-    "category": "programming-language",
+    "category": "Programming Language",
     "name": "Scheme",
     "know-score": 20,
     "love-score": 0
   },
   {
-    "category": "database",
+    "category": "Database",
     "name": "MongoDB",
+    "know-score": 45,
+    "love-score": 90
+  },
+  {
+    "category": "Programming Language",
+    "name": "Python",
+    "know-score": 55,
+    "love-score": 80
+  },
+  {
+    "category": "Framework",
+    "name": "Express.js",
+    "know-score": 40,
+    "love-score": 85
+  },
+  {
+    "category": "Programming Language",
+    "name": "C++",
+    "know-score": 30,
+    "love-score": 30
+  },
+  {
+    "category": "Platform",
+    "name": "Android",
+    "know-score": 53,
+    "love-score": 20
+  },
+  {
+    "category": "Framework",
+    "name": "JavaFX",
+    "know-score": 65,
+    "love-score": 75
+  },
+  {
+    "category": "Web",
+    "name": "HTML",
+    "know-score": 60,
+    "love-score": 80
+  },
+  {
+    "category": "Web",
+    "name": "CSS",
+    "know-score": 35,
+    "love-score": 80
+  },
+  {
+    "category": "Programming Language",
+    "name": "JavaScript",
     "know-score": 50,
+    "love-score": 40
+  },
+  {
+    "category": "Platform",
+    "name": "Node.js",
+    "know-score": 50,
+    "love-score": 85
+  },
+  {
+    "category": "DevOps",
+    "name": "Docker",
+    "know-score": 70,
     "love-score": 90
   }
 ]
