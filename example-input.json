@@ -1,0 +1,20 @@
+[
+  {
+    "category": "programming-language",
+    "name": "Java",
+    "know-score": 85,
+    "love-score": 100
+  },
+  {
+    "category": "programming-language",
+    "name": "Scheme",
+    "know-score": 20,
+    "love-score": 0
+  },
+  {
+    "category": "database",
+    "name": "MongoDB",
+    "know-score": 50,
+    "love-score": 90
+  }
+]
