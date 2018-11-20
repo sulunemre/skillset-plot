@@ -33,17 +33,25 @@ readTextFile("example-input.json", function (text) {
 			categories.push({
 				x: [data[i]["know-score"]],
 				y: [data[i]["love-score"]],
-				mode: 'markers',
+				mode: 'markers+text',
 				type: 'scatter',
 				name: categoryName,
 				text: [data[i]["name"]],
+				textposition: [], // text position will be added according to the skill's closeness to the bottom.
 				marker: {size: 12}
 			});
+			index = indexOf(categories, categoryName);
 		}
 		else {
 			categories[index].x.push(data[i]["know-score"]);
 			categories[index].y.push(data[i]["love-score"]);
 			categories[index].text.push(data[i]["name"]);
+		}
+		//setting the position of the text according to its closeness to x axis.
+		if(data[i]["love-score"] < 10){
+			categories[index].textposition.push('top center');
+		} else{
+			categories[index].textposition.push('bottom center');
 		}
 	}
 	draw();
