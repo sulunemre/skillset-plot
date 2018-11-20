@@ -34,10 +34,11 @@ readTextFile("example-input.json", function (text) {
 				x: [data[i]["know-score"]],
 				y: [data[i]["love-score"]],
 				mode: 'markers+text',
+				hoverinfo: 'none', // disable hover info. example values: "y", "x+y", "all". default: "all".
 				type: 'scatter',
 				name: categoryName,
 				text: [data[i]["name"]],
-				textposition: [], // text position will be added according to the skill's closeness to the bottom.
+				textposition: [], // text position will be added later according to the skill's closeness to the bottom.
 				marker: {size: 12}
 			});
 			index = indexOf(categories, categoryName);
@@ -59,17 +60,25 @@ readTextFile("example-input.json", function (text) {
 
 let data = categories;
 let layout = {
+	hoverinfo: 'none',
 	xaxis: {
 		range: [-5, 105],
-		title: "Know"
+		title: "Know",
+		fixedrange: true // disable zooming for x axis
 	},
 	yaxis: {
 		range: [-5, 105],
-		title: "Love"
+		title: "Love",
+		fixedrange: true // disable zooming for x axis
 	},
 	title: 'Development Skills'
 };
 
 function draw() {
 	Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
+	// code below resolves the problem that displays "Aa" under each legend(the ones at the right) point.
+	let aas = document.getElementsByClassName("pointtext");
+	for(let i = 0; i < aas.length; i++){
+		aas[i].style = "visibility: hidden;";
+	}
 }
