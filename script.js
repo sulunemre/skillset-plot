@@ -1,83 +1,91 @@
-var country = ['Switzerland (2011)', 'Chile (2013)', 'Japan (2014)', 'United States (2012)', 'Slovenia (2014)', 'Canada (2011)', 'Poland (2010)', 'Estonia (2015)', 'Luxembourg (2013)', 'Portugal (2011)'];
+function indexOf(categories, categoryName){
+	for(let i = 0; i < categories.length; i++){
+		if(categories[i].name === categoryName){
+			return i;
+		}
+	}
+	return -1;
+}
 
-var votingPop = [40, 45.7, 52, 53.6, 54.1, 54.2, 54.5, 54.7, 55.1, 56.6];
+function readTextFile(file, callback) {
+	var rawFile = new XMLHttpRequest();
+	rawFile.overrideMimeType("application/json");
+	rawFile.open("GET", file, false);
+	rawFile.onreadystatechange = function () {
+		if (rawFile.readyState === 4 && rawFile.status == "200") {
+			callback(rawFile.responseText);
+		}
+	}
+	rawFile.send(null);
+}
 
-var regVoters = [49.1, 42, 52.7, 84.3, 51.7, 61.1, 55.3, 64.2, 91.1, 58.9];
+var categories = []; // "Traces" in the original example
 
-var trace1 = {
-  type: 'scatter',
-  x: votingPop,
-  y: country,
-  mode: 'markers',
-  name: 'Percent of estimated voting age population',
-  marker: {
-    color: 'rgba(156, 165, 196, 0.95)',
-    line: {
-      color: 'rgba(156, 165, 196, 1.0)',
-      width: 1,
-    },
-    symbol: 'circle',
-    size: 16
-  }
+var knowScores = [];
+var loveScores = [];
+var names = [];
+
+// https://stackoverflow.com/a/34579496/5964489
+readTextFile("example-input.json", function (text) {
+	const data = JSON.parse(text);
+
+	// Traverse all skills
+	for (var i = 0; i < data.length; i++) {
+		let category = data[i]["category"];
+		let index = indexOf(categories, category);
+		if (index < 0) {
+			categories.push({
+				x: [data[i]["know-score"]],
+				y: [data[i]["love-score"]],
+				mode: 'markers',
+				type: 'scatter',
+				name: category,
+				text: [data[i]["name"]],
+				marker: {size: 12}
+			});
+
+		}
+		else {
+			categories[index].x.push(data[i]["know-score"]);
+			categories[index].y.push(data[i]["love-score"]);
+			categories[index].text.push(data[i]["name"]);
+		}
+	}
+});
+
+
+let trace1 = {
+	x: knowScores,
+	y: loveScores,
+	mode: 'markers',
+	type: 'scatter',
+	name: 'Team A',
+	text: names,
+	marker: {size: 12}
 };
 
-var trace2 = {
-  x: regVoters,
-  y: country,
-  mode: 'markers',
-  name: 'Percent of estimated registered voters',
-  marker: {
-    color: 'rgba(204, 204, 204, 0.95)',
-    line: {
-      color: 'rgba(217, 217, 217, 1.0)',
-      width: 1,
-    },
-    symbol: 'circle',
-    size: 16
-  }
+let trace2 = {
+	x: [15, 25, 35, 45, 55],
+	y: [40, 10, 70, 10, 40],
+	mode: 'markers',
+	type: 'scatter',
+	name: 'Team B',
+	text: ['B-a', 'B-b', 'B-c', 'B-d', 'B-e'],
+	marker: {size: 12}
 };
 
-var data = [trace1, trace2];
+let data = categories;
 
-var layout = {
-  title: 'Votes cast for ten lowest voting age population in OECD countries',
-  xaxis: {
-    showgrid: false,
-    showline: true,
-    linecolor: 'rgb(102, 102, 102)',
-    titlefont: {
-      font: {
-        color: 'rgb(204, 204, 204)'
-      }
-    },
-    tickfont: {
-      font: {
-        color: 'rgb(102, 102, 102)'
-      }
-    },
-    autotick: false,
-    dtick: 10,
-    ticks: 'outside',
-    tickcolor: 'rgb(102, 102, 102)'
-  },
-  margin: {
-    l: 140,
-    r: 40,
-    b: 50,
-    t: 80
-  },
-  legend: {
-    font: {
-      size: 10,
-    },
-    yanchor: 'middle',
-    xanchor: 'right'
-  },
-  width: 600,
-  height: 400,
-  paper_bgcolor: 'rgb(254, 247, 234)',
-  plot_bgcolor: 'rgb(254, 247, 234)',
-  hovermode: 'closest'
+let layout = {
+	xaxis: {
+		range: [0, 100],
+		title: "Know"
+	},
+	yaxis: {
+		range: [0, 100],
+		title: "Love"
+	},
+	title: 'Development Skills'
 };
 
 Plotly.newPlot('myDiv', data, layout);
