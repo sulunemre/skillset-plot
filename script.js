@@ -87,5 +87,5 @@ let layout = {
 	},
 	title: 'Development Skills'
 };
-
+readTextFile("example-input.json");
 Plotly.newPlot('myDiv', data, layout);
