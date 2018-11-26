@@ -22,7 +22,7 @@ function readTextFile(file, callback) {
 let categories = []; // "Traces" in the original example
 
 // https://stackoverflow.com/a/34579496/5964489
-readTextFile("example-input.json", function (text) {
+readTextFile("https://raw.githubusercontent.com/sulunemre/skillset-plot/master/example-input.json", function (text) {
 	const data = JSON.parse(text);
 
 	// Traverse all skills
