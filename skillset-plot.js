@@ -57,7 +57,7 @@ readTextFile("https://raw.githubusercontent.com/sulunemre/skillset-plot/master/e
 	}
 	draw();
 });
-
+// 
 let data = categories;
 let layout = {
 	hoverinfo: 'none',
