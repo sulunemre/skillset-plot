@@ -76,5 +76,11 @@
     "name": "Docker",
     "know-score": 70,
     "love-score": 90
+  },
+  {
+    "category": "Database",
+    "name": "MySQL",
+    "know-score": 80,
+    "love-score": 50
   }
 ]
